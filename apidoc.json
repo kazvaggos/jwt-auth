@@ -1,0 +1,10 @@
+{
+  "name": "jwt-auth",
+  "version": "1.0.0",
+  "description": "JWT Authentication Project",
+  "title": "WT Authentication Project",
+  "header": {
+    "title": "README",
+    "filename": "README.md"
+  }
+}

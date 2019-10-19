@@ -1,0 +1,28 @@
+version: "3.1"
+services:
+  api:
+    build: .
+    image: jwt-auth/api:latest
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    environment:
+      NODE_ENV: "${NODE_ENV:-development}"
+      NODE_PORT: "${NODE_PORT:-3000}"
+      DATABASE_HOST: "db"
+      DATABASE_PORT: "${DATABASE_PORT:-5432}"
+      DATABASE_USER: "${DATABASE_USER:-devuser}"
+      DATABASE_PASS: "${DATABASE_PASS:-devpass}"
+      DATABASE_NAME: "${DATABASE_NAME:-pgdb}"
+      DATABASE_SCHEMA: "${DATABASE_SCHEMA:-jwt_auth}"
+      JWT_SECRET: "${JWT_SECRET:-secret}"
+      JWT_EXPIRATION: "${JWT_EXPIRATION:-100d}"
+  db:
+    image: postgres:9.5-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: "${POSTGRES_DB:-pgdb}"
+      POSTGRES_USER: "${POSTGRES_USER:-devuser}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:-devpass}"
